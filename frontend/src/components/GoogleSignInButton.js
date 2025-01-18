@@ -1,34 +1,32 @@
-import React, { MouseEventHandler } from "react";
-import { ReactNode } from "react";
+import React from 'react';
 
-const GoogleSignInButton = (
-  onClick: (e: MouseEventHandler<HTMLButtonElement>) => void,
-  children: ReactNode
-) => {
+const GoogleSignInButton = ({ onClick, children }) => {
   const buttonStyle = {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    gap: "8px",
-    padding: "8px 16px",
-    fontSize: "14px",
-    fontFamily: "Roboto, sans-serif",
-    fontWeight: "500",
-    color: "#3c4043",
-    backgroundColor: "white",
-    border: "1px solid #dadce0",
-    borderRadius: "4px",
-    boxShadow: "0 1px 2px rgba(0, 0, 0, 0.1)",
-    cursor: "pointer",
-    transition: "background-color 0.2s, box-shadow 0.2s",
-    width: "fit-content",
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: '8px',
+    padding: '8px 16px',
+    fontSize: '14px',
+    fontFamily: 'Roboto, sans-serif',
+    fontWeight: '500',
+    color: '#3c4043',
+    backgroundColor: 'white',
+    border: '1px solid #dadce0',
+    borderRadius: '4px',
+    boxShadow: '0 1px 2px rgba(0, 0, 0, 0.1)',
+    cursor: 'pointer',
+    transition: 'background-color 0.2s, box-shadow 0.2s',
+    width: 'fit-content'
   };
 
+
   return (
-    <button style={buttonStyle} onClick={onClick}>
-      <svg
-        style={{ width: "18px", height: "18px" }}
-        viewBox="0 0 24 24"
+    <button style={buttonStyle}
+    onClick={onClick}>
+      <svg 
+        style={{ width: '18px', height: '18px' }}
+        viewBox="0 0 24 24" 
         fill="none"
       >
         <path
