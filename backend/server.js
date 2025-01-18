@@ -11,7 +11,7 @@ app.use(express.json())
 app.use(express.urlencoded())
 
 // Routes
-app("/", (req, res) => res.status(200).json("Backend is running!"))
+app.get("/", (req, res) => res.status(200).json("Backend is running!"))
 
 app.listen(5000, () => {
   console.log("Server started at port 5000")
