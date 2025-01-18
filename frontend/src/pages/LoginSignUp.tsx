@@ -3,8 +3,13 @@ import { useState, useEffect } from "react";
 import LogInButton from "../auth/LogInButton";
 import { auth } from "../auth/firebaseConfig";
 
+interface User {
+  name: string | null;
+  email: string | null;
+}
+
 function LoginSignUp() {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (currentUser) => {

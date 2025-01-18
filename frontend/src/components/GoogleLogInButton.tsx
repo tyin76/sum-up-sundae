@@ -2,7 +2,7 @@ import React, { MouseEventHandler } from "react";
 import { ReactNode } from "react";
 
 const GoogleSignInButton = (
-  onClick: (e: MouseEventHandler<HTMLButtonElement>) => void,
+  onClick: MouseEventHandler<HTMLButtonElement>,
   children: ReactNode
 ) => {
   const buttonStyle = {
