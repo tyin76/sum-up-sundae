@@ -1,7 +1,7 @@
 import React from 'react';
 import { auth, provider, signInWithPopup } from '../auth/firebaseConfig';
 import { Button } from '@mui/material';
-import GoogleSignInButton from '../components/GoogleSignInButton';
+import GoogleSignInButton from '../components/CustomButton';
 
 const LoginButton = ({ setUser }) => {
   const handleLogin = async () => {
@@ -15,8 +15,10 @@ const LoginButton = ({ setUser }) => {
 
       setUser({
         name: user.displayName,
-        email: user.email
+        email: user.email,
+        profilePic: user.photoURL
       });
+      console.log('photo URL', user.photoURL)
       console.log('name:', user.displayName)
       console.log('email: ', user.email)
     } catch (error) {
