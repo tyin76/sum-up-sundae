@@ -4,6 +4,7 @@ import LogoutButton from '../auth/LogoutButton.js';
 import { auth } from '../auth/firebaseConfig';
 import { Box, Typography } from '@mui/material';
 import LogoAndText from '../media/SumUpSundaeTextLogo.svg'
+import Logo from '../components/Logo.js';
 
 function HomePage() {
   const [user, setUser] = useState(null);
@@ -51,7 +52,7 @@ function HomePage() {
         justifyContent="center"
       >
         <Box>
-        <img src={LogoAndText} alt="Logo and Text" style={{ width: "100%", height: "auto", marginBottom: '30px'}}></img>
+        <Logo height='190px' marginBottom='25px'></Logo>
         </Box>
         
         {!user && <LoginButton setUser={setUser} />}
