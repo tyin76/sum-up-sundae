@@ -6,9 +6,14 @@ import { Typography, Box, Card, CardContent } from "@mui/material"
 import Grid from "@mui/material/Grid2"
 import CustomButton from "../components/CustomButton.js"
 import { useRef } from "react"
+import { useContext } from "react"
+import { AuthContext } from "../providers/AuthProvider.js"
 
 function ViewGroup() {
   const [groupUsers, setGroupUsers] = useState(null)
+
+  const uid = localStorage.getItem("uid")
+  const groupId = localStorage.getItem("groups")
 
   const fileInputRef = useRef(null)
 
@@ -33,7 +38,7 @@ function ViewGroup() {
             "Content-Type": "application/json", // Specify file type
           },
           body: JSON.stringify({
-            userID: "678c715de7fc42df93f014c3",
+            userID: uid,
           }),
         })
         const firstResponse = await resUrl.json()
@@ -57,7 +62,9 @@ function ViewGroup() {
     const fetchGroupUsers = async () => {
       document.body.style.backgroundColor = "#FFF5F4"
       try {
-        const users = await getPeopleInGroup("678cc74f813155e31daa3a7b")
+        console.log("HIEU")
+        console.log(groupId)
+        const users = await getPeopleInGroup(groupId)
         setGroupUsers(users)
       } catch (error) {
         console.error("Error fetching group users:", error)
@@ -87,7 +94,7 @@ function ViewGroup() {
       >
         {groupUsers &&
           groupUsers.map((user, index) => (
-            <Grid item key={index} xs={12} sm={6} md={4} lg={3}>
+            <Grid item key={index} xs={12} sm={6} md={4} lg={3} onClick>
               <Card
                 sx={{
                   padding: 2,
@@ -124,6 +131,7 @@ function ViewGroup() {
                     }}
                   >
                     {user.name}
+                    {user._id}
                   </Typography>
                 </CardContent>
               </Card>
