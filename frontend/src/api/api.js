@@ -134,7 +134,7 @@ export async function createGroup(uid) {
     })
     const data = await response.json()
     //localStorage.setItem('groups', data);
-    console.log(data)
+    return data
   } catch (error) {
     console.log(error)
   }
