@@ -1,7 +1,7 @@
 const API_URL = "http://localhost:5000/api/"
 
 // Gets all the information from everyone in the group
-export async function getPeopleInGroup() {
+export async function getPeopleInGroup(groupID) {
   const mockData = [
     {
       name: "John",
@@ -28,8 +28,19 @@ export async function getPeopleInGroup() {
       email: "ahsdiohasodhioas",
     },
   ]
+  try {
+    const response = await fetch(`${API_URL}group/user/${groupID}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+    const data = await response.json()
+    console.log(data)
+    return data.users
+  } catch (error) {}
 
-  return mockData
+  // return mockData
 }
 
 export async function uploadVideo(userID, videoFile) {

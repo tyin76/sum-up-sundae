@@ -43,11 +43,6 @@ router.get("/user/:userId", async (req, res) => {
 router.post("/", async (req, res) => {
   try {
     const { userID } = req.body
-    // if (!asset) {
-    //   return res
-    //     .status(400)
-    //     .json({ success: false, message: "Required field(s) is missing" })
-    // }
 
     // Check if the user exists
     const userExists = await User.findById(userID)
@@ -55,15 +50,22 @@ router.post("/", async (req, res) => {
       return res.status(404).json({ error: "User not found" })
     }
 
-    // Check if the user already has a video
-    // const existingVideo = await Asset.findOne({ userID })
-    // if (existingVideo) {
-    //   return res
-    //     .status(400)
-    //     .json({ error: "User already has an associated video" })
-    // }
-
     const { url, playbackID, ID } = await lp(userID)
+
+    // Check if the user already has a video
+    const existingAsset = await Asset.findOne({ userID })
+
+    if (existingAsset) {
+      // Update the existing asset with new details
+      existingAsset.ID = ID
+      existingAsset.playbackID = playbackID
+      existingAsset.uploadUrl = url
+
+      await existingAsset.save()
+
+      return res.status(200).json(existingAsset)
+    }
+
     // Create a new video record
     const newVideo = await Asset.create({
       userID,

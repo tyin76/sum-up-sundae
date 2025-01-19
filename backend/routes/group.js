@@ -18,6 +18,33 @@ router.get("/:id", async (req, res) => {
   }
 })
 
+// Get all users in a specific group
+router.get("/user/:groupID", async (req, res) => {
+  try {
+    const { groupID } = req.params
+
+    // Find the group by ID
+    const group = await Group.findById(groupID)
+    if (!group) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Group not found" })
+    }
+
+    // Extract user IDs from the group
+    const userIDs = group.users.map((user) => user.userID)
+
+    // Fetch user details for all user IDs
+    const users = await User.find({ _id: { $in: userIDs } }).select(
+      "name email avatar"
+    ) // Only include these fields in the response
+    res.status(200).json({ users })
+  } catch (error) {
+    console.error("Error fetching users for group:", error.message)
+    res.status(500).json({ success: false, message: "Server error" })
+  }
+})
+
 // Create new group
 router.post("/", async (req, res) => {
   try {

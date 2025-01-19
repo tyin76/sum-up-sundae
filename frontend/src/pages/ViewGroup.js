@@ -33,7 +33,7 @@ function ViewGroup() {
             "Content-Type": "application/json", // Specify file type
           },
           body: JSON.stringify({
-            userID: "678c7531977330cd8ce0ec22",
+            userID: "678c715de7fc42df93f014c3",
           }),
         })
         const firstResponse = await resUrl.json()
@@ -57,7 +57,7 @@ function ViewGroup() {
     const fetchGroupUsers = async () => {
       document.body.style.backgroundColor = "#FFF5F4"
       try {
-        const users = await getPeopleInGroup()
+        const users = await getPeopleInGroup("678cc74f813155e31daa3a7b")
         setGroupUsers(users)
       } catch (error) {
         console.error("Error fetching group users:", error)
@@ -98,6 +98,12 @@ function ViewGroup() {
                     transform: "scale(1.05)",
                     boxShadow: "0px 8px 20px rgba(0, 0, 0, 0.2)",
                   },
+                  minWidth: 200,
+                  height: 200,
+                  display: "flex",
+                  flexDirection: "collumn",
+                  justifyContent: "center",
+                  alignItems: "center",
                   transition: "transform 0.2s ease-in-out",
                 }}
               >
@@ -117,7 +123,7 @@ function ViewGroup() {
                       color: "white",
                     }}
                   >
-                    Name: {user.name}
+                    {user.name}
                   </Typography>
                 </CardContent>
               </Card>
