@@ -2,7 +2,7 @@ import { Box } from '@mui/material';
 import { Stack } from '@mui/material';
 import Logo from './Logo'
 
-function Header({ children, height='10vh' }) {
+function Header({ children, height='15vh' }) {
     return (
         <Stack>
             <Stack direction={'row'} width="100%">
