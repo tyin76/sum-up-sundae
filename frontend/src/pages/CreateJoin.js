@@ -1,8 +1,9 @@
+import CustomButton from "../components/CustomButton";
+
+
 function CreateJoin() {
     return (
-        <div>
-            <h1>Create/Join</h1>
-        </div>
+            <CustomButton>aefjoiafwoijafijow</CustomButton>
     );
 }
 

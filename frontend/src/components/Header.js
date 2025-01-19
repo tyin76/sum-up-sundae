@@ -5,8 +5,8 @@ import Logo from './Logo'
 function Header({ children, height='10vh' }) {
     return (
         <Stack>
-            <Stack direction={'row'} width="100%" padding={"10px"}>
-                <Box height={height}>
+            <Stack direction={'row'} width="100%">
+                <Box height={height} padding="10px">
                     <Logo height={height} />
                 </Box>
             </Stack>
