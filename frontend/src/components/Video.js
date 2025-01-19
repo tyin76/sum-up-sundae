@@ -19,12 +19,11 @@ function Video({ src }) {
     <div>
       <Player.Root
         src={`https://vod-cdn.lp-playback.studio/raw/jxf4iblf6wlsyor6526t4tcmtmqa/catalyst-vod-com/hls/${src}/index.m3u8`}
-        className="border-8 border-black"
       >
-        <Player.Container className="w-[500px] h-[500px] border-4 border-red-500 contain">
-          <Player.Video className="object-scale-down w-[500px] [h-500px] border-8 border-black" />
+        <Player.Container className="max-h-[88vh] flex row items-center justify-center mx-auto">
+          <Player.Video className="max-h-[88vh] mx-auto" />
           <Player.Controls className="flex items-center justify-center">
-            <Player.PlayPauseTrigger className="w-20 h-20">
+            <Player.PlayPauseTrigger className="w-40 h-40">
               <Player.PlayingIndicator asChild matcher={false}>
                 <PlayIcon />
               </Player.PlayingIndicator>

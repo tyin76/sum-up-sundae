@@ -8,7 +8,7 @@ import CustomButton from "../components/CustomButton.js"
 import { useRef } from "react"
 import { useContext } from "react"
 import { AuthContext } from "../providers/AuthProvider.js"
-import Video from "../components/Video.js"
+import { useNavigate } from "react-router-dom"
 function ViewGroup() {
   const [groupUsers, setGroupUsers] = useState(null)
 
@@ -59,6 +59,12 @@ function ViewGroup() {
     }
   }
 
+  const navigate = useNavigate()
+
+  const handleCardClick = (playbackID) => {
+    navigate(`/userSumUp/${playbackID}`)
+  }
+
   useEffect(() => {
     const fetchGroupUsers = async () => {
       document.body.style.backgroundColor = "#FFF5F4"
@@ -66,6 +72,7 @@ function ViewGroup() {
         console.log("HIEU")
         console.log(groupId)
         const users = await getPeopleInGroup(groupId)
+        console.log(users)
         setGroupUsers(users)
       } catch (error) {
         console.error("Error fetching group users:", error)
@@ -96,49 +103,44 @@ function ViewGroup() {
         {groupUsers &&
           groupUsers.map((user, index) => (
             <>
-              <Grid item key={index} xs={12} sm={6} md={4} lg={3}>
-                <Card
+              <Grid
+                item
+                key={index}
+                xs={12}
+                sm={6}
+                md={4}
+                lg={3}
+                className="w-1/4 p-2 flex flex-col rounded-lg items-center gap-2 border-0 border-black ease-in-out hover:scale-110 hover:shadow-[0px_8px_20px_rgba(0,0,0,0.2)] duration-150"
+                onClick={() => {
+                  handleCardClick(user.playbackID)
+                }}
+              >
+                <img
+                  className="rounded-md h-[400px]"
+                  src={`https://vod-cdn.lp-playback.studio/raw/jxf4iblf6wlsyor6526t4tcmtmqa/catalyst-vod-com/hls/${user.playbackID}/thumbnails/keyframes_0.png`}
+                ></img>
+                <CardContent
+                  className="flex items-center justify-center gap-4"
                   sx={{
-                    padding: 2,
-                    backgroundColor: "#FCB5BA",
-                    borderRadius: 4,
-                    boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
-                    "&:hover": {
-                      transform: "scale(1.05)",
-                      boxShadow: "0px 8px 20px rgba(0, 0, 0, 0.2)",
+                    padding: 0.5,
+                    "&:last-child": {
+                      paddingBottom: 1,
                     },
-                    minWidth: 500,
-                    height: 500,
-                    display: "flex",
-                    flexDirection: "collumn",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    transition: "transform 0.2s ease-in-out",
                   }}
                 >
-                  <CardContent
+                  <img className="rounded-md size-10" src={user.avatar}></img>
+                  <Typography
+                    className="text-pink-700"
+                    variant="h5"
                     sx={{
-                      padding: 0.5,
-                      "&:last-child": {
-                        paddingBottom: 1,
-                      },
+                      fontFamily: "Bubble",
+                      fontSize: "24px",
                     }}
                   >
-                    <Typography
-                      variant="h5"
-                      sx={{
-                        fontFamily: "Bubble",
-                        fontSize: "24px",
-                        color: "white",
-                      }}
-                    >
-                      {user.name}
-                      {user.playbackID}
-                    </Typography>
-                  </CardContent>
-                </Card>
+                    {user.name}
+                  </Typography>
+                </CardContent>
               </Grid>
-              {/* <Video src={user.playbackID} /> */}
             </>
           ))}
       </Grid>
@@ -160,7 +162,6 @@ function ViewGroup() {
           onChange={onSubmitVideo}
         />
       </Box>
-      <Video src={"4809ca1v2mvs2f4m"} />
     </Box>
   )
 }

@@ -15,23 +15,20 @@ import LogoutButton from "../auth/LogoutButton"
 
 function CreateJoin() {
   const [groupCode, setGroupCode] = useState("")
-  const [inGroup, setInGroup] = useState(false)
 
   const { groupId, setGroupId } = useContext(AuthContext)
+  const [initialized, setInitialized] = useState(false)
+
   const uid = localStorage.getItem("uid")
   // const groupId = localStorage.getItem("groups")
   // console.log("Uid: ", uid)
   // console.log("groupID: ", groupId)
 
   useEffect(() => {
-    if (groupId == null) {
-      setInGroup(false)
-    } else {
-      setInGroup(true)
-    }
-  }, [groupId])
+    setGroupId(localStorage.getItem("groups"))
+    console.log(groupId)
+    setInitialized(true) // Mark as initialized
 
-  useEffect(() => {
     document.body.style.backgroundColor = "#FFF5F4"
     return () => {
       document.body.style.backgroundColor = ""
@@ -64,6 +61,9 @@ function CreateJoin() {
     } catch (error) {
       console.error(error)
     }
+  }
+  if (!initialized) {
+    return null
   }
   return (
     <>

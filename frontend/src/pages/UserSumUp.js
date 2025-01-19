@@ -1,10 +1,10 @@
-import { useParams } from "react-router-dom";
+import { useParams } from "react-router-dom"
+import Video from "../components/Video.js"
 
 function UserSumUp() {
+  const { playbackId } = useParams()
 
-    const { email } = useParams();
-
-    return(<>{email}</>)
+  return <Video src={playbackId} />
 }
 
-export default UserSumUp;
+export default UserSumUp
