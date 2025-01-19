@@ -2,15 +2,21 @@ import CustomButton from "../components/CustomButton";
 import { useEffect, useState } from "react"
 import { Stack, Box, Button, Typography } from "@mui/material"
 import { TextField } from "@mui/material"
-import { joinGroup, createGroup, getGroupId } from '../api/api'
+import { joinGroup, createGroup, getGroupId, removeUserFromGroup } from '../api/api'
 import { create } from "@mui/material/styles/createTransitions";
 import { useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
+import LogoutButton from "../auth/LogoutButton";
 
 function CreateJoin() {
     const [groupCode, setGroupCode] = useState('');
 
-    const { uid, groupId } = useContext(AuthContext);
+    const { setUid , setGroupId } = useContext(AuthContext);
+
+    const uid = localStorage.getItem("uid")
+    const groupId = localStorage.getItem("groups");
+
+    console.log("Uid: ", uid)
 
 
     useEffect(() => {
@@ -30,7 +36,7 @@ function CreateJoin() {
 
     return (
         <>
-          {groupId ? (
+          {!groupId ? (
             <Stack width="100%" alignItems="center">
               <Stack>
                 <TextField
@@ -80,7 +86,7 @@ function CreateJoin() {
               </Stack>
               <Box sx={{ height: "30px" }} />
               <CustomButton onClick={() => handleCreateGroupClick()}>Create Group</CustomButton>
-              <CustomButton>Leave Current Group</CustomButton>
+              <LogoutButton></LogoutButton>
             </Stack>
           ) : (
             <Box
@@ -95,7 +101,8 @@ function CreateJoin() {
                     }}
                     >
             <Typography sx={{ fontFamily: 'Bubble', paddingBottom: '40px', fontSize: '40px'}}>You are already in a Group, you cannot join more than one!</Typography>
-            <CustomButton>Leave Current Group</CustomButton>
+            <CustomButton onClick={()=>{removeUserFromGroup(groupId, uid)}}>Leave Current Group</CustomButton>
+            <LogoutButton></LogoutButton>
             </Box>
 
           )}

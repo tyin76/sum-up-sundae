@@ -5,7 +5,7 @@ import { auth } from '../auth/firebaseConfig';
 import { Box, Typography } from '@mui/material';
 import LogoAndText from '../media/SumUpSundaeTextLogo.svg'
 import Logo from '../components/Logo.js';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, useNavigation } from 'react-router-dom';
 import { Button, Stack } from '@mui/material';
 import Header from '../components/Header.js';
 import CustomButton from '../components/CustomButton.js';
@@ -15,6 +15,8 @@ import { useContext } from 'react';
 function HomePage() {
   const { user, setUser } = useContext(AuthContext);
   // {user && <img src={user.profilePic} style={{ borderRadius: '50px'}}></img>}
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (currentUser) => {
@@ -33,24 +35,30 @@ function HomePage() {
     });
     return () => unsubscribe();
   }, []);
-  
+
+  useEffect(() => {
+    if (user != null) {
+      navigate("/createJoin");
+    }
+  }, [user])
+
 
   return (
     <>
       <Box display="flex" height="100vh" position="relative">
-        
+
         {user && <Box
           position="absolute"
-          top={20} 
-          right={20} 
+          top={20}
+          right={20}
           display="flex"
           gap={2}
         >
-          <Link to='/createJoin' style={{ textDecoration: 'none'}}>
-          <CustomButton fontSize="18px">Join/Create Group</CustomButton>
+          <Link to='/createJoin' style={{ textDecoration: 'none' }}>
+            <CustomButton fontSize="18px">Join/Create Group</CustomButton>
           </Link>
-          <Link to='/viewGroup' style={{ textDecoration: 'none'}}>
-          <CustomButton fontSize="18px">View Group</CustomButton>
+          <Link to='/viewGroup' style={{ textDecoration: 'none' }}>
+            <CustomButton fontSize="18px">View Group</CustomButton>
           </Link>
         </Box>
         }
@@ -79,7 +87,7 @@ function HomePage() {
             <Logo height="190px" marginBottom="25px" />
           </Box>
 
-          {!user && <LoginButton/>}
+          {!user && <LoginButton />}
           {user && <LogoutButton />}
         </Box>
       </Box>
