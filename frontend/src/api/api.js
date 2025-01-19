@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:4000/api/"
+const API_URL = "https://sum-up-sundae-production.up.railway.app/api/"
 
 // Gets all the information from everyone in the group
 export async function getPeopleInGroup(groupID) {

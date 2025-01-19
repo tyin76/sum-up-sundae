@@ -53,7 +53,7 @@ function ViewGroup() {
       const file = e.target.files[0]
       console.log(file)
       try {
-        const resUrl = await fetch("http://localhost:4000/api/asset/", {
+        const resUrl = await fetch("https://sum-up-sundae-production.up.railway.app/api/asset/", {
           method: "POST",
           headers: {
             "Content-Type": "application/json", // Specify file type
