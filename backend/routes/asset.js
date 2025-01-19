@@ -1,6 +1,7 @@
 import express from "express"
 import Group from "../models/GroupModel.js"
 import Asset from "../models/AssetModel.js"
+import User from "../models/UserModel.js"
 import { lp } from "../livepeer/livepeer.js"
 
 const router = express.Router()
@@ -41,10 +42,7 @@ router.get("/user/:userId", async (req, res) => {
 // Upload a video
 router.post("/", async (req, res) => {
   try {
-    console.log("HIEU")
-    const { userID, asset } = req.body
-    console.log(userID, asset)
-    console.log(req.file)
+    const { userID } = req.body
     // if (!asset) {
     //   return res
     //     .status(400)
@@ -65,14 +63,13 @@ router.post("/", async (req, res) => {
     //     .json({ error: "User already has an associated video" })
     // }
 
-    const response = await lp(asset)
-    const { ID, playbackID, uploadUrl } = await response.json()
+    const { url, playbackID, ID } = await lp(userID)
     // Create a new video record
     const newVideo = await Asset.create({
       userID,
       ID,
       playbackID,
-      uploadUrl,
+      uploadUrl: url,
     })
 
     res.status(201).json(newVideo)
