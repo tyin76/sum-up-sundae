@@ -1,18 +1,12 @@
 import React from 'react';
-import { auth, signOut } from '../auth/firebaseConfig';
 import { Button } from '@mui/material';
 import GoogleSignInButton from '../components/CustomButton';
+import { AuthContext } from '../providers/AuthProvider';
+import { useContext } from 'react';
 
-const LogoutButton = ({ setUser }) => {
-  const handleLogout = async () => {
-    try {
-      await signOut(auth);
-      setUser(null);
-      localStorage.removeItem('uid');
-    } catch (error) {
-      console.error('Logout failed:', error.message);
-    }
-  };
+const LogoutButton = () => {
+
+  const { handleLogout } = useContext(AuthContext);
 
   return (
     <GoogleSignInButton

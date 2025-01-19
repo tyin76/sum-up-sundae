@@ -4,8 +4,13 @@ import { Button } from '@mui/material';
 import GoogleSignInButton from '../components/CustomButton';
 import { createUser } from '../api/api';
 import { create } from '@mui/material/styles/createTransitions';
+import { AuthContext } from '../providers/AuthProvider';
+import { useContext } from 'react';
 
-const LoginButton = ({ setUser }) => {
+const LoginButton = () => {
+
+  const { setUid, setUser, setGroupId } = useContext(AuthContext);
+
   const handleLogin = async () => {
     try {
       const result = await signInWithPopup(auth, provider);
@@ -23,8 +28,16 @@ const LoginButton = ({ setUser }) => {
       console.log('photo URL', user.photoURL)
       console.log('name:', user.displayName)
       console.log('email: ', user.email)
-      
-      await createUser(user.displayName, user.email, user.photoURL);
+
+      const data = await createUser(user.displayName, user.email, user.photoURL);
+      const { groups, _id } = data;
+      setUid(_id);
+      if (!groups) {
+        setGroupId(groups);
+      }
+
+      console.log("Group id: ", groups);
+
     } catch (error) {
       console.error('Login failed:', error.message);
     }

@@ -24,7 +24,7 @@ app.use("/api/asset", assetRouter)
 
 // Postman
 
-app.listen(5000, () => {
+app.listen(4898, () => {
   connectDB()
   // lp()
   console.log("Server started at port 5000")
