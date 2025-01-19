@@ -5,17 +5,20 @@ import './App.css';
 import HomePage from './pages/HomePage.js'
 import ViewGroup from './pages/ViewGroup.js';
 import UserSumUp from './pages/UserSumUp.js'
+import { AuthProvider } from './providers/AuthProvider.js';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<HomePage />} /> 
-        <Route path="/createJoin" element={<Header children={<CreateJoin/>}/>} /> 
-        <Route path='/viewGroup' element={<Header height='15vh' children={<ViewGroup />} />}> </Route>
-        <Route path='/userSumUp/:email' element={<Header height='15vh' children={<UserSumUp />} />}> </Route>
-      </Routes>
-    </BrowserRouter>
+    <AuthProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/createJoin" element={<Header children={<CreateJoin />} />} />
+          <Route path='/viewGroup' element={<Header height='15vh' children={<ViewGroup />} />}> </Route>
+          <Route path='/userSumUp/:email' element={<Header height='15vh' children={<UserSumUp />} />}> </Route>
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
   );
 }
 
