@@ -48,11 +48,11 @@ const AuthProvider = ({ children }) => {
       console.log("email: ", user.email)
 
       const data = await createUser(user.displayName, user.email, user.photoURL)
-      console.log(data)
       const { _id, groups } = data
       setUid(_id)
       setGroupId(groups)
 
+      console.log("User id: ", _id)
       console.log("Group id: ", groups)
       localStorage.setItem("uid", _id)
       localStorage.setItem("groups", groups)

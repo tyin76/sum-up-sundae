@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:4898/api/"
+const API_URL = "http://localhost:5000/api/"
 
 // Gets all the information from everyone in the group
 export async function getPeopleInGroup(groupID) {
@@ -96,7 +96,6 @@ export async function removeUserFromGroup(groupId, userId) {
       },
     })
     const data = await response.json()
-    localStorage.setItem('groups', null);
     console.log(data)
   } catch (error) {
     console.log(error)
@@ -104,7 +103,6 @@ export async function removeUserFromGroup(groupId, userId) {
 }
 
 export async function joinGroup(groupCode, uid) {
-  console.log(uid)
   try {
     const response = await fetch(`${API_URL}group/add/${groupCode}/user`, {
       method: "POST",
@@ -116,7 +114,7 @@ export async function joinGroup(groupCode, uid) {
       }),
     })
     const data = await response.json()
-    console.log(data)
+    return data
   } catch (error) {
     console.log(error)
   }
