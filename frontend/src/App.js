@@ -3,6 +3,7 @@ import CreateJoin from './pages/CreateJoin.js';
 import Header from './components/Header.js';
 import './App.css';
 import HomePage from './pages/HomePage.js'
+import ViewGroup from './pages/ViewGroup.js';
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/createJoin" element={<Header children={<CreateJoin/>}/>} /> 
+        <Route path='/viewGroup' element={<Header height='15vh' children={<ViewGroup />} />}> </Route>
       </Routes>
     </BrowserRouter>
   );
