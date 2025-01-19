@@ -1,7 +1,8 @@
 import express from "express"
 import cors from "cors"
 import dotenv from "dotenv"
-import { lp } from "./livepeer/livepeer.js"
+import connectDB from "./mongodb/mongo.js"
+import User from "./models/UserModel.js"
 
 dotenv.config()
 
@@ -11,17 +12,31 @@ const app = express()
 app.use(cors())
 
 // Middlewares
-app.use(express.json())
+app.use(express.json()) // allows us to accept json data in the body
 app.use(express.urlencoded())
 
 // Routes
-app.get("/", (req, res) => res.status(200).json("Backend is running!"))
+app.post("/api/users", async (req, res) => {
+  const user = req.body; // user will send this data
 
-const server = () => {
-  lp()
-  app.listen(5000, () => {
-    console.log("Server started at port 5000")
-  })
-}
+  if (!user.name) {
+    return res.status(400).json({ success:false, message: "Name is required" });
+  }
 
-server()
+  const newUser = User(user)
+  try {
+    await newUser.save()
+    res.status(201).json({ success: true, data: newUser })
+
+  } catch (error) {
+    console.error("Error in Create user:", error.message)
+    res.status(500).json({ success: false, message: "Server Error" })
+  }
+})
+
+// Postman
+
+app.listen(5432, () => {
+  connectDB();
+  console.log("Server started at port 5000")
+})
