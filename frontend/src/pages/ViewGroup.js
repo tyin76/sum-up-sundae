@@ -5,10 +5,19 @@ import ProfileCard from '../components/ProfileCard.js';
 import { Typography, Box, Card, CardContent } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import CustomButton from '../components/CustomButton.js';
+import { useRef } from 'react'
 
 
 function ViewGroup() {
     const [groupUsers, setGroupUsers] = useState(null);
+
+    const fileInputRef = useRef(null);
+
+    const handleButtonClick = () => {
+      if (fileInputRef.current) {
+        fileInputRef.current.click();
+      }
+    };
 
     useEffect(() => {
         const fetchGroupUsers = async () => {
@@ -96,7 +105,13 @@ function ViewGroup() {
         padding: 2,
       }}
     >
-      <CustomButton>Upload Video</CustomButton>
+      <CustomButton onClick={handleButtonClick}>Upload Video</CustomButton>
+      <input
+        ref={fileInputRef}
+        type="file"
+        style={{ display: 'none' }} // Hidden from view but still functional
+        onChange={(e) => console.log('File selected:', e.target.files)}
+      />
             </Box>
         </Box>
       );
