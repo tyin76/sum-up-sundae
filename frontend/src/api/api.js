@@ -1,5 +1,5 @@
 // Gets all the information from everyone in the group
-function getPeopleInGroup() {
+export async function getPeopleInGroup() {
     const mockData = [
         {
             name: "John",

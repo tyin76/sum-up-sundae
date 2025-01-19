@@ -1,10 +1,7 @@
 import React from 'react';
-import { useState } from 'react';
 
-const CustomButton = ({ onClick, children }) => {
-
-  const [isHovered, setIsHovered] = useState(false);
-  const buttonStyle = {
+const ProfileCard = ({ children }) => {
+  const style = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -14,7 +11,7 @@ const CustomButton = ({ onClick, children }) => {
     fontFamily: 'Bubble',
     fontWeight: '500',
     color: 'white',
-    backgroundColor: isHovered ? '#C29ECF' : '#DABCDF',
+    backgroundColor: '#DABCDF',
     border: 'none',
     borderRadius: '60px',
     boxShadow: '0 5px 10px rgba(0, 0, 0, 0.2)',
@@ -25,14 +22,10 @@ const CustomButton = ({ onClick, children }) => {
 
 
   return (
-    <button style={buttonStyle}
-    onClick={onClick}
-    onMouseEnter={() => setIsHovered(true)} 
-    onMouseLeave={() => setIsHovered(false)}>
-       
+    <button style={style}>
       {children}
     </button>
   );
 };
 
-export default CustomButton;
+export default ProfileCard;
