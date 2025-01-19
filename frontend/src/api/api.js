@@ -42,6 +42,7 @@ function leaveCurrentGroup() {
 }
 
 function joinGroup(code) {
+    
 
 }
 
@@ -55,6 +56,28 @@ function uploadVideo() {
 
 function getVideo(email) {
     
+}
+
+export async function createUser(name, email, avatar) {
+    
+    try {
+        const response = await fetch('http://localhost:4898/api/user', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                name: name,
+                email: email,
+                avatar: avatar
+            })
+        });
+        const data = await response.json();
+        console.log(data)
+    } catch (error) {
+        console.log(error);
+    }
+
 }
 
 function didPostToday() {
