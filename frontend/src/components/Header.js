@@ -1,10 +1,14 @@
-import Box from '@material-ui/core/Box';
+import {Box} from '@mui/material';
+import {Stack} from '@mui/material';
+import SumUpSundaeTextLogo from '../media/SumUpSundaeTextLogo.svg';
 
 function Header() {
     return (
-        <Box width="100%">
-            wefwwef
-        </Box>
+        <Stack direction={'row'} width="100%">
+            <Box height="100%">
+                <img src={SumUpSundaeTextLogo} alt="SumUp Sundae Text Logo" />
+            </Box>
+        </Stack>
     );
 }
 
