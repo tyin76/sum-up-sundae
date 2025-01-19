@@ -9,9 +9,11 @@ import { useNavigate, Link } from 'react-router-dom';
 import { Button, Stack } from '@mui/material';
 import Header from '../components/Header.js';
 import CustomButton from '../components/CustomButton.js';
+import { AuthContext } from '../providers/AuthProvider';
+import { useContext } from 'react';
 
 function HomePage() {
-  const [user, setUser] = useState(null);
+  const { user, setUser } = useContext(AuthContext);
   // {user && <img src={user.profilePic} style={{ borderRadius: '50px'}}></img>}
 
   useEffect(() => {
@@ -77,8 +79,8 @@ function HomePage() {
             <Logo height="190px" marginBottom="25px" />
           </Box>
 
-          {!user && <LoginButton setUser={setUser} />}
-          {user && <LogoutButton setUser={setUser} />}
+          {!user && <LoginButton/>}
+          {user && <LogoutButton />}
         </Box>
       </Box>
     </>

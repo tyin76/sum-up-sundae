@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:5000/api/"
+const API_URL = "http://localhost:4898/api/"
 
 // Gets all the information from everyone in the group
 export async function getPeopleInGroup(groupID) {
@@ -128,8 +128,7 @@ async function removeUserFromGroup(groupId, userId) {
   }
 }
 
-export async function joinGroup(groupCode) {
-  const uid = localStorage.getItem("uid")
+export async function joinGroup(groupCode, uid) {
   console.log(uid)
   try {
     const response = await fetch(`${API_URL}group/add/${groupCode}/user`, {
@@ -148,8 +147,7 @@ export async function joinGroup(groupCode) {
   }
 }
 
-export async function createGroup() {
-  const uid = localStorage.getItem("uid")
+export async function createGroup(uid) {
   console.log(uid)
   try {
     const response = await fetch(`${API_URL}group`, {
@@ -203,6 +201,7 @@ export async function createUser(name, email, avatar) {
     localStorage.setItem("uid", data._id)
     console.log(data)
     console.log(data._id)
+    return data;
   } catch (error) {
     console.log(error)
   }
