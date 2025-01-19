@@ -9,7 +9,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/createJoin" element={<Header />} /> 
+        <Route path="/createJoin" element={<Header children={<CreateJoin/>}/>} /> 
       </Routes>
     </BrowserRouter>
   );
