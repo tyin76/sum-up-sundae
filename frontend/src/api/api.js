@@ -31,14 +31,57 @@ export async function getPeopleInGroup() {
     return mockData
 }
 
+async function getGroupId(groupId) {
+    try {
+        const response = await fetch(`http://localhost:4898/api/group/${groupId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        const data = await response.json();
+        console.log(data)
+        return data;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+async function getAllUsersAssetsInGroup(groupId) {
+    try {
+        const response = await fetch(`http://localhost:5000/api/asset/group/${groupId}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        const data = await response.json();
+        console.log(data);
+        return data;
+    } catch (error) {
+        console.log(error);
+    }  
+}
+
 // Gets the current group code the user is currently in
 function getCurrentGroupCode() {
 
 }
 
 // 
-function leaveCurrentGroup() {
-
+async function removeUserFromGroup(groupId, userId) {
+    try {
+        const response = await fetch(`http://localhost:4898/api/${groupId}/user/${userId}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        const data = await response.json();
+        console.log(data)
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 function joinGroup(code) {
@@ -50,12 +93,23 @@ function createGroup() {
 
 }
 
-function uploadVideo() {
+function addUserToGroup() {
 
 }
 
-function getVideo(email) {
-    
+async function getVideo(groupId, userId) {
+        try {
+        const response = await fetch(`http://localhost:5000/api/group/:groupId/user/:userId`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        const data = await response.json();
+        console.log(data)
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 export async function createUser(name, email, avatar) {
