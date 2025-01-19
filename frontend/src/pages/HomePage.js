@@ -5,9 +5,10 @@ import { auth } from '../auth/firebaseConfig';
 import { Box, Typography } from '@mui/material';
 import LogoAndText from '../media/SumUpSundaeTextLogo.svg'
 import Logo from '../components/Logo.js';
-import { useNavigate } from 'react-router-dom';
-import { Button } from '@mui/material';
+import { useNavigate, Link } from 'react-router-dom';
+import { Button, Stack } from '@mui/material';
 import Header from '../components/Header.js';
+import CustomButton from '../components/CustomButton.js';
 
 function HomePage() {
   const [user, setUser] = useState(null);
@@ -34,39 +35,51 @@ function HomePage() {
 
   return (
     <>
-    <Box
-      display="flex"
-      height="100vh"
-    >
-      <Box
-        flex={1}
-        bgcolor="#FBB6BA"
-        display="flex"
-        alignItems="center"
-        justifyContent="center"
-      >
-        <Typography sx={{ fontFamily: 'Bubble', color: 'white', fontSize: '40px' }}>Keep in touch with your friends!</Typography>
-      </Box>
-
-      <Box
-        flex={1}
-        bgcolor="#FFF5F4"
-        display="flex"
-        flexDirection='column'
-        alignItems="center"
-        justifyContent="center"
-      >
-        <Box>
-        <Logo height='190px' marginBottom='25px'></Logo>
+      <Box display="flex" height="100vh" position="relative">
         
+        <Box
+          position="absolute"
+          top={20} 
+          right={20} 
+          display="flex"
+          gap={2}
+        >
+          <Link to='/createJoin' style={{ textDecoration: 'none'}}>
+          <CustomButton fontSize="18px">Join/Create Group</CustomButton>
+          </Link>
+          <Link to='/viewGroup' style={{ textDecoration: 'none'}}>
+          <CustomButton fontSize="18px">View Group</CustomButton>
+          </Link>
         </Box>
-        
-        {!user && <LoginButton setUser={setUser} />}
-        {user && <LogoutButton setUser={setUser} />}
-      </Box>
 
-      
-    </Box>
+        <Box
+          flex={1}
+          bgcolor="#FBB6BA"
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+        >
+          <Typography sx={{ fontFamily: 'Bubble', color: 'white', fontSize: '40px' }}>
+            Keep in touch with your friends!
+          </Typography>
+        </Box>
+
+        <Box
+          flex={1}
+          bgcolor="#FFF5F4"
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          justifyContent="center"
+        >
+          <Box>
+            <Logo height="190px" marginBottom="25px" />
+          </Box>
+
+          {!user && <LoginButton setUser={setUser} />}
+          {user && <LogoutButton setUser={setUser} />}
+        </Box>
+      </Box>
     </>
   );
 }
