@@ -46,17 +46,18 @@ router.post("/", async (req, res) => {
 })
 
 // Add user to group
-router.post("/:groupId/user", async (req, res) => {
+router.post("/add/:groupId/user", async (req, res) => {
   try {
     const { userID } = req.body
     const group = await Group.findById(req.params.groupId)
+    console.log(userID)
+    console.log(req.params.groupId)
     if (!group) {
       return res.status(404).json({ error: "Group not found" })
     }
 
     group.users.push({ userID })
     await group.save()
-
     await User.findByIdAndUpdate(userID, {
       groups: req.params.groupId,
     })
