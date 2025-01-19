@@ -52,9 +52,6 @@ function ViewGroup() {
     if (e.target.files.length > 0) {
       const file = e.target.files[0]
       console.log(file)
-      // const data = new FormData()
-      // data.append("file", file)
-      // data.append("upload_preset", "videos_preset")
       try {
         const resUrl = await fetch("http://localhost:5000/api/asset/", {
           method: "POST",

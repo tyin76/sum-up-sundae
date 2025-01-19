@@ -40,15 +40,19 @@ function CreateJoin() {
       const data = await joinGroup(groupCode, uid)
       console.log(data)
       setGroupId(data._id)
-      console.log("HIEU TEACK", groupId)
       localStorage.setItem("groups", data._id)
     } catch (error) {
       console.error(error)
     }
   }
 
-  async function handleCreateGroupClick() {
-    await createGroup(uid)
+  async function handleCreateGroupClick(uid) {
+    try {
+      const data = await createGroup(uid)
+      console.log(data)
+      setGroupId(data._id)
+      localStorage.setItem("groups", data._id)
+    } catch (error) {}
   }
 
   async function handleLeaveGroupClick(groupId, uid) {
@@ -116,7 +120,7 @@ function CreateJoin() {
             </CustomButton>
           </Stack>
           <Box sx={{ height: "30px" }} />
-          <CustomButton onClick={() => handleCreateGroupClick()}>
+          <CustomButton onClick={() => handleCreateGroupClick(uid)}>
             Create Group
           </CustomButton>
           <LogoutButton></LogoutButton>
