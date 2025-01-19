@@ -39,6 +39,49 @@ router.get("/user/:userId", async (req, res) => {
   }
 })
 
+// Check if a user has uploaded a video this week
+router.get("/has-uploaded/:userID", async (req, res) => {
+  try {
+    const { userID } = req.params
+
+    // Validate userID
+    if (!userID) {
+      return res
+        .status(400)
+        .json({ success: false, message: "User ID is required" })
+    }
+
+    // Calculate the start of the current week (Sunday at 00:00)
+    const now = new Date()
+    const startOfWeek = new Date(
+      now.setDate(now.getDate() - now.getDay())
+    ).setHours(0, 0, 0, 0)
+
+    // Query assets for the user created this week
+    const recentAsset = await Asset.findOne({
+      userID,
+      createdAt: { $gte: startOfWeek },
+    })
+
+    if (recentAsset) {
+      return res.status(200).json({
+        success: true,
+        hasUploaded: true,
+        message: "User has uploaded a video this week",
+      })
+    }
+
+    res.status(200).json({
+      success: true,
+      hasUploaded: false,
+      message: "User has not uploaded a video this week",
+    })
+  } catch (error) {
+    console.error("Error checking upload status:", error.message)
+    res.status(500).json({ success: false, message: "Server error", error })
+  }
+})
+
 // Upload a video
 router.post("/", async (req, res) => {
   try {
