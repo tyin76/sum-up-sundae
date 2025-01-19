@@ -84,8 +84,26 @@ async function removeUserFromGroup(groupId, userId) {
     }
 }
 
-function joinGroup(code) {
-    
+export async function joinGroup(groupCode) {
+
+   const uid = localStorage.getItem('uid');
+
+   try {
+    const response = await fetch(`http://localhost:4898/api/group/${groupCode}/user`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            userId: uid
+        })
+    });
+    const data = await response.json();
+    console.log(data);
+} catch (error) {
+    console.log(error);
+}
+
 
 }
 
@@ -127,7 +145,10 @@ export async function createUser(name, email, avatar) {
             })
         });
         const data = await response.json();
+        console.log(data._id);
+        localStorage.setItem('uid', data._id);
         console.log(data)
+        console.log(data._id);
     } catch (error) {
         console.log(error);
     }

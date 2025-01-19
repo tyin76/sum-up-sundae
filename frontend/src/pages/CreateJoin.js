@@ -1,9 +1,11 @@
 import CustomButton from "../components/CustomButton";
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { Stack, Box } from "@mui/material"
 import { TextField } from "@mui/material"
+import { joinGroup } from '../api/api'
 
 function CreateJoin() {
+    const [groupCode, setGroupCode] = useState('');
 
     useEffect(() => {
         document.body.style.backgroundColor = '#FFF5F4';
@@ -11,23 +13,28 @@ function CreateJoin() {
             document.body.style.backgroundColor = '';
         };
     }, []);
+    
+    async function handleClick(groupCode) {
+        await joinGroup(groupCode);
+    }
 
     return (
         <Stack width={"100%"} alignItems={'center'}>
             <Stack>
                 <TextField
                     placeholder="Enter group code"
+                    onChange={(e) => setGroupCode(e.target.value)}
                     sx={{
                         '& .MuiOutlinedInput-root': {
                             '& fieldset': {
-                                borderColor: '#DABCDF', // Default border color
+                                borderColor: '#DABCDF', 
                                 transition: 'border-color 0.3s ease-in-out'
                             },
                             '&:hover fieldset': {
-                                borderColor: '#FBB6BA', // Border color on hover
+                                borderColor: '#FBB6BA', 
                             },
                             '&.Mui-focused fieldset': {
-                                borderColor: '#FBB6BA', // Border color when focused
+                                borderColor: '#FBB6BA', 
                             },
                         },
                         '& .MuiInputBase-input::placeholder': {
@@ -35,10 +42,10 @@ function CreateJoin() {
                             fontFamily: 'Bubble',
                             fontSize: '20px'
                         },
-                        '& .MuiInputBase-input': {  // Target the input text itself
-                            color: '#7D1945',        // Set the text color
-                            fontFamily: 'Bubble',     // Set the font family
-                            fontSize: '20px',       // Adjust the font size as needed 
+                        '& .MuiInputBase-input': { 
+                            color: '#7D1945',        
+                            fontFamily: 'Bubble',     
+                            fontSize: '20px',    
                         }
                     }}
                     InputProps={{
@@ -48,7 +55,8 @@ function CreateJoin() {
                         }
                     }}
                 ></TextField>
-                <CustomButton width="100%" borderTopRightRadius="0" borderTopLeftRadius="0" borderBottomRightRadius="1em" borderBottomLeftRadius="1em">Join Group</CustomButton>
+                <CustomButton width="100%" borderTopRightRadius="0" borderTopLeftRadius="0" borderBottomRightRadius="1em" borderBottomLeftRadius="1em" 
+                    onClick={() => handleClick(groupCode)}>Join Group</CustomButton>
             </Stack>
             <Box sx={{height: "30px"}}/>
             <CustomButton>Create Group</CustomButton>
