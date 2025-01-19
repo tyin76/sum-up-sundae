@@ -38,7 +38,7 @@ function HomePage() {
         alignItems="center"
         justifyContent="center"
       >
-        {user && <Typography variant="h1">Welcome, {user.name}!</Typography>}
+        <Typography sx={{ fontFamily: 'Bubble', color: 'white', fontSize: '40px' }}>Keep in touch with your friends!</Typography>
       </Box>
 
       
@@ -51,7 +51,7 @@ function HomePage() {
         justifyContent="center"
       >
         <Box>
-        <img src={LogoAndText} alt="Logo and Text" style={{ width: "100%", height: "auto" }}></img>
+        <img src={LogoAndText} alt="Logo and Text" style={{ width: "100%", height: "auto", marginBottom: '30px'}}></img>
         </Box>
         
         {!user && <LoginButton setUser={setUser} />}
