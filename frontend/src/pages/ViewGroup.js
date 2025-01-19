@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import Header from "../components/Header"
 import { getPeopleInGroup, HasPostThisWeek } from "../api/api.js"
 import ProfileCard from "../components/ProfileCard.js"
-import { Typography, Box, Card, CardContent } from "@mui/material"
+import { Typography, Box, Card, CardContent, CircularProgress } from "@mui/material"
 import Grid from "@mui/material/Grid2"
 import CustomButton from "../components/CustomButton.js"
 import { useRef } from "react"
@@ -16,6 +16,8 @@ function ViewGroup() {
   const uid = localStorage.getItem("uid")
   const groupId = localStorage.getItem("groups")
   console.log(uid, groupId)
+
+  const [loading, setLoading] = useState(false);
 
   const fileInputRef = useRef(null)
 
@@ -39,6 +41,7 @@ function ViewGroup() {
   }, [])
 
   const onSubmitVideo = async (e) => {
+    setLoading(true);
     e.preventDefault()
     if (e.target.files.length > 0) {
       const file = e.target.files[0]
@@ -47,7 +50,7 @@ function ViewGroup() {
       // data.append("file", file)
       // data.append("upload_preset", "videos_preset")
       try {
-        const resUrl = await fetch("http://localhost:5000/api/asset/", {
+        const resUrl = await fetch("http://localhost:4898/api/asset/", {
           method: "POST",
           headers: {
             "Content-Type": "application/json", // Specify file type
@@ -68,6 +71,7 @@ function ViewGroup() {
         const json = await response
         checkUpload(uid)
         console.log(json)
+        setLoading(false);
       } catch (error) {
         console.error(error)
       }
@@ -173,7 +177,7 @@ function ViewGroup() {
           padding: 2,
         }}
       >
-        <CustomButton onClick={handleButtonClick}>Upload Video</CustomButton>
+        <CustomButton onClick={handleButtonClick}>{loading ? <CircularProgress></CircularProgress> : "Upload Video"}</CustomButton>
         <input
           ref={fileInputRef}
           type="file"
