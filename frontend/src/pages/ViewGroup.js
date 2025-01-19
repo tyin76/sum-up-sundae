@@ -6,7 +6,6 @@ import { Typography, Box, Card, CardContent } from "@mui/material"
 import Grid from "@mui/material/Grid2"
 import CustomButton from "../components/CustomButton.js"
 import { useRef } from "react"
-import axios from "axios"
 
 function ViewGroup() {
   const [groupUsers, setGroupUsers] = useState(null)

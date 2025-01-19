@@ -8,6 +8,7 @@ const LogoutButton = ({ setUser }) => {
     try {
       await signOut(auth);
       setUser(null);
+      localStorage.removeItem('uid');
     } catch (error) {
       console.error('Logout failed:', error.message);
     }
