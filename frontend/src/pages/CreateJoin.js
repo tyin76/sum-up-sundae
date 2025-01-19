@@ -2,7 +2,7 @@ import CustomButton from "../components/CustomButton";
 import { useEffect, useState } from "react"
 import { Stack, Box } from "@mui/material"
 import { TextField } from "@mui/material"
-import { joinGroup, createGroup } from '../api/api'
+import { joinGroup, createGroup, getGroupId } from '../api/api'
 import { create } from "@mui/material/styles/createTransitions";
 
 function CreateJoin() {
@@ -10,6 +10,10 @@ function CreateJoin() {
 
     useEffect(() => {
         document.body.style.backgroundColor = '#FFF5F4';
+        const helper = async () => {
+        console.log(await getGroupId(localStorage.getItem('uid')));
+        }
+        helper();
         return () => {
             document.body.style.backgroundColor = '';
         };

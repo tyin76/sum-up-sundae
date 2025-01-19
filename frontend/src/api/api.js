@@ -31,10 +31,11 @@ export async function getPeopleInGroup() {
     return mockData
 }
 
-async function getGroupId(userId) {
+export async function getGroupId(groupID) {
+    console.log(groupID);
     try {
-        const response = await fetch(`http://localhost:4898/api/group/${userId}`, {
-            method: 'POST',
+        const response = await fetch(`http://localhost:4898/api/group/${groupID}`, {
+            method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
             },
