@@ -17,6 +17,7 @@ function HomePage() {
         setUser({
           name: currentUser.displayName,
           email: currentUser.email,
+          profilePic: currentUser.photoURL
         });
       } else {
         localStorage.removeItem('firebaseToken');
@@ -53,11 +54,14 @@ function HomePage() {
       >
         <Box>
         <Logo height='190px' marginBottom='25px'></Logo>
+        {user && <img src={user.profilePic} style={{ borderRadius: '50px'}}></img>}
         </Box>
         
         {!user && <LoginButton setUser={setUser} />}
         {user && <LogoutButton setUser={setUser} />}
       </Box>
+
+      
     </Box>
   );
 }

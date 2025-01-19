@@ -15,8 +15,10 @@ const LoginButton = ({ setUser }) => {
 
       setUser({
         name: user.displayName,
-        email: user.email
+        email: user.email,
+        profilePic: user.photoURL
       });
+      console.log('photo URL', user.photoURL)
       console.log('name:', user.displayName)
       console.log('email: ', user.email)
     } catch (error) {
