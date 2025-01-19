@@ -56,7 +56,7 @@ function ViewGroup() {
       // data.append("file", file)
       // data.append("upload_preset", "videos_preset")
       try {
-        const resUrl = await fetch("http://localhost:5000/api/asset/", {
+        const resUrl = await fetch("http://localhost:4000/api/asset/", {
           method: "POST",
           headers: {
             "Content-Type": "application/json", // Specify file type
