@@ -1,6 +1,6 @@
 import React from 'react';
 
-const GoogleSignInButton = ({ onClick, children }) => {
+const CustomButton = ({ onClick, children }) => {
   const buttonStyle = {
     display: 'flex',
     alignItems: 'center',
@@ -30,4 +30,4 @@ const GoogleSignInButton = ({ onClick, children }) => {
   );
 };
 
-export default GoogleSignInButton;
+export default CustomButton;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { auth, provider, signInWithPopup } from '../auth/firebaseConfig';
 import { Button } from '@mui/material';
-import GoogleSignInButton from '../components/GoogleSignInButton';
+import GoogleSignInButton from '../components/CustomButton';
 
 const LoginButton = ({ setUser }) => {
   const handleLogin = async () => {
