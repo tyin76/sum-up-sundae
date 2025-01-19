@@ -1,34 +1,9 @@
-const API_URL = "http://localhost:4898/api/"
+const API_URL = "http://localhost:5000/api/"
 
 // Gets all the information from everyone in the group
 export async function getPeopleInGroup(groupID) {
-  const mockData = [
-    {
-      name: "John",
-      email: "135134",
-    },
-    {
-      name: "Johnathan",
-      email: "aiweiiawe",
-    },
-    {
-      name: "Josh",
-      email: "wfiwiejfio",
-    },
-    {
-      name: "Hieu",
-      email: "asidoashid",
-    },
-    {
-      name: "Terence",
-      email: "ahudhasoidioasd",
-    },
-    {
-      name: "Jake",
-      email: "ahsdiohasodhioas",
-    },
-  ]
   try {
+    console.log("hieu", groupID)
     const response = await fetch(`${API_URL}group/user/${groupID}`, {
       method: "GET",
       headers: {
@@ -37,7 +12,7 @@ export async function getPeopleInGroup(groupID) {
     })
     const data = await response.json()
     console.log(data)
-    return data.users
+    return data?.users
   } catch (error) {}
 
   // return mockData
@@ -201,7 +176,7 @@ export async function createUser(name, email, avatar) {
     localStorage.setItem("uid", data._id)
     console.log(data)
     console.log(data._id)
-    return data;
+    return data
   } catch (error) {
     console.log(error)
   }

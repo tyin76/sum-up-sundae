@@ -1,6 +1,7 @@
 import express from "express"
 import Group from "../models/GroupModel.js"
 import User from "../models/UserModel.js"
+import mongoose from "mongoose"
 
 const router = express.Router()
 
@@ -23,8 +24,15 @@ router.get("/user/:groupID", async (req, res) => {
   try {
     const { groupID } = req.params
 
+    if (!mongoose.Types.ObjectId.isValid(groupID)) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Group not found" })
+    }
+
     // Find the group by ID
     const group = await Group.findById(groupID)
+    console.log(group)
     if (!group) {
       return res
         .status(404)
