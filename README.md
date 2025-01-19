@@ -1,3 +1,4 @@
+<img src="frontend/src/media/SumUpSundaeTextLogo.svg" alt="SumUpSundae Logo" style="width: 100%;" />
 # Sum-Up Sundae
 
 A Full-stack web application that allows users to join or create groups, record short weekly recap videos, and view friends’ updates every Sunday.
