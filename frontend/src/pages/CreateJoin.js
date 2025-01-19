@@ -1,6 +1,6 @@
 import CustomButton from "../components/CustomButton";
 import { useEffect } from "react"
-import { Stack, Typography } from "@mui/material"
+import { Stack, Box } from "@mui/material"
 import { TextField } from "@mui/material"
 
 function CreateJoin() {
@@ -14,7 +14,7 @@ function CreateJoin() {
 
     return (
         <Stack width={"100%"} alignItems={'center'}>
-            <CustomButton>
+            <Stack>
                 <TextField
                     placeholder="Enter group code"
                     sx={{
@@ -24,26 +24,33 @@ function CreateJoin() {
                                 transition: 'border-color 0.3s ease-in-out'
                             },
                             '&:hover fieldset': {
-                                borderColor: '#FFF5F4', // Border color on hover
+                                borderColor: '#FBB6BA', // Border color on hover
                             },
                             '&.Mui-focused fieldset': {
-                                borderColor: '#FFF5F4', // Border color when focused
+                                borderColor: '#FBB6BA', // Border color when focused
                             },
                         },
                         '& .MuiInputBase-input::placeholder': {
-                            color: '#FFF5F4',
+                            color: '#7D1945',
                             fontFamily: 'Bubble',
-                            fontSize: '16px'
+                            fontSize: '20px'
+                        },
+                        '& .MuiInputBase-input': {  // Target the input text itself
+                            color: '#7D1945',        // Set the text color
+                            fontFamily: 'Bubble',     // Set the font family
+                            fontSize: '20px',       // Adjust the font size as needed 
                         }
                     }}
                     InputProps={{
                         style: {
-                            borderRadius: '100em'
+                            borderTopRightRadius: '2em',
+                            borderTopLeftRadius: '2em'
                         }
                     }}
                 ></TextField>
-                <Typography sx={{ fontFamily: 'Bubble', }}>Join Group</Typography>
-            </CustomButton>
+                <CustomButton width="100%" borderTopRightRadius="0" borderTopLeftRadius="0" borderBottomRightRadius="1em" borderBottomLeftRadius="1em">Join Group</CustomButton>
+            </Stack>
+            <Box sx={{height: "30px"}}/>
             <CustomButton>Create Group</CustomButton>
         </Stack>
     );
