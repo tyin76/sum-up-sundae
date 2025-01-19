@@ -10,7 +10,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<HomePage />} /> 
         <Route path="/createJoin" element={<Header children={<CreateJoin/>}/>} /> 
         <Route path='/viewGroup' element={<Header height='15vh' children={<ViewGroup />} />}> </Route>
         <Route path='/userSumUp/:email' element={<Header height='15vh' children={<UserSumUp />} />}> </Route>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 
-const CustomButton = ({ onClick, children, width = 'fit-content', borderBottomRightRadius = '5em', borderBottomLeftRadius = '5em', borderTopRightRadius = '5em', borderTopLeftRadius = '5em'}) => {
+const CustomButton = ({ onClick, children, width = 'fit-content', borderBottomRightRadius = '5em', borderBottomLeftRadius = '5em', borderTopRightRadius = '5em', borderTopLeftRadius = '5em', fontSize = '32px'}) => {
 
   const [isHovered, setIsHovered] = useState(false);
   const buttonStyle = {
@@ -10,7 +10,7 @@ const CustomButton = ({ onClick, children, width = 'fit-content', borderBottomRi
     justifyContent: 'center',
     gap: '8px',
     padding: '20px 36px',
-    fontSize: '32px',
+    fontSize: fontSize,
     fontFamily: 'Bubble',
     fontWeight: '500',
     color: 'white',

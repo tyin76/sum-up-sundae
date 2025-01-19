@@ -7,9 +7,11 @@ import LogoAndText from '../media/SumUpSundaeTextLogo.svg'
 import Logo from '../components/Logo.js';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@mui/material';
+import Header from '../components/Header.js';
 
 function HomePage() {
   const [user, setUser] = useState(null);
+  // {user && <img src={user.profilePic} style={{ borderRadius: '50px'}}></img>}
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (currentUser) => {
@@ -28,13 +30,14 @@ function HomePage() {
     });
     return () => unsubscribe();
   }, []);
+  
 
   return (
+    <>
     <Box
       display="flex"
       height="100vh"
     >
-      
       <Box
         flex={1}
         bgcolor="#FBB6BA"
@@ -55,7 +58,7 @@ function HomePage() {
       >
         <Box>
         <Logo height='190px' marginBottom='25px'></Logo>
-        {user && <img src={user.profilePic} style={{ borderRadius: '50px'}}></img>}
+        
         </Box>
         
         {!user && <LoginButton setUser={setUser} />}
@@ -64,6 +67,7 @@ function HomePage() {
 
       
     </Box>
+    </>
   );
 }
 
