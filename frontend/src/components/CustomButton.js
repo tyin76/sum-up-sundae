@@ -17,10 +17,7 @@ const CustomButton = ({ onClick, children }) => {
     boxShadow: '0 5px 10px rgba(0, 0, 0, 0.2)',
     cursor: 'pointer',
     transition: 'background-color 0.2s, box-shadow 0.2s',
-    width: 'fit-content',
-    '&:hover': {
-      backgroundColor: 'black'
-    }
+    width: 'fit-content'
   };
 
 
