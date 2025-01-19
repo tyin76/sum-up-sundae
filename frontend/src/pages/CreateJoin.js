@@ -89,7 +89,7 @@ function CreateJoin() {
                     flexDirection: 'column',             
                     alignItems: 'center',        
                     justifyContent: 'center',    
-                    height: '100vh',             
+                    height: '100%',
                     width: '100vw',              
                     backgroundColor: '#f5f5f5',
                     }}

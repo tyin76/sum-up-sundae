@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 import Logo from './Logo';
 import CustomButton from './CustomButton';
 
-function Header({ children, height = '15vh' }) {
+function Header({ children, height = '15vh', stackHeight = '100vh' }) {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
   return (
-    <Stack>
+    <Stack height={stackHeight}>
       <Stack
         direction="row"
         alignItems="center"

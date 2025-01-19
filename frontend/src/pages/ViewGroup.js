@@ -74,7 +74,7 @@ function ViewGroup() {
     <Box
       sx={{
         padding: 4,
-        minHeight: "100vh",
+        minHeight: "100%",
       }}
     >
       <Grid
@@ -132,7 +132,7 @@ function ViewGroup() {
       </Grid>
       <Box
         sx={{
-          marginTop: "10vh",
+          marginTop: "00vh",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",

@@ -31,6 +31,7 @@ const LoginButton = () => {
 
       const data = await createUser(user.displayName, user.email, user.photoURL);
       const { groups, _id } = data;
+      console.log("Group id: ", groups)
       setUid(_id);
       if (!groups) {
         setGroupId(groups);
