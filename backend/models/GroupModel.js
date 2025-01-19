@@ -7,7 +7,7 @@ const groupSchema = new mongoose.Schema(
         userID: {
           type: mongoose.Schema.Types.ObjectId,
           ref: "User",
-          // unique: true, TODO
+          unique: true,
         },
       },
     ],
