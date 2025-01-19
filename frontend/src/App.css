@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 .App {
   text-align: center;
 }
@@ -39,5 +43,5 @@
 
 @font-face {
   font-family: "Bubble";
-  src: url('../src/media/BubbleBobble-rg3rx.ttf');
+  src: url("../src/media/BubbleBobble-rg3rx.ttf");
 }

@@ -26,6 +26,7 @@ export const lp = async (id) => {
       options
     )
     const data = await response.json()
+    console.log(data)
     const url = data.url
     const playbackID = data.asset?.playbackId
     const ID = data.asset?.id

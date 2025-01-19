@@ -23,6 +23,7 @@ const AuthProvider = ({ children }) => {
       setUser(null)
       setUid(null)
       localStorage.removeItem("uid")
+      localStorage.removeItem("groups")
     } catch (error) {
       console.error("Logout failed:", error.message)
     }
@@ -52,7 +53,8 @@ const AuthProvider = ({ children }) => {
       setUid(_id)
       setGroupId(groups)
 
-      console.log("Group id: ", groupId)
+      console.log("user id: ", _id)
+      console.log("Group id: ", groups)
       localStorage.setItem("uid", _id)
       localStorage.setItem("groups", groups)
     } catch (error) {

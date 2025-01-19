@@ -17,6 +17,10 @@ const userSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Group",
     },
+    playbackID: {
+      type: String,
+      ref: "Asset",
+    },
   },
   {
     timestamps: true, //created at and updated at

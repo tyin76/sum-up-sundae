@@ -8,12 +8,13 @@ import CustomButton from "../components/CustomButton.js"
 import { useRef } from "react"
 import { useContext } from "react"
 import { AuthContext } from "../providers/AuthProvider.js"
-
+import Video from "../components/Video.js"
 function ViewGroup() {
   const [groupUsers, setGroupUsers] = useState(null)
 
   const uid = localStorage.getItem("uid")
   const groupId = localStorage.getItem("groups")
+  console.log(uid, groupId)
 
   const fileInputRef = useRef(null)
 
@@ -94,48 +95,51 @@ function ViewGroup() {
       >
         {groupUsers &&
           groupUsers.map((user, index) => (
-            <Grid item key={index} xs={12} sm={6} md={4} lg={3} onClick>
-              <Card
-                sx={{
-                  padding: 2,
-                  backgroundColor: "#FCB5BA",
-                  borderRadius: 4,
-                  boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
-                  "&:hover": {
-                    transform: "scale(1.05)",
-                    boxShadow: "0px 8px 20px rgba(0, 0, 0, 0.2)",
-                  },
-                  minWidth: 200,
-                  height: 200,
-                  display: "flex",
-                  flexDirection: "collumn",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  transition: "transform 0.2s ease-in-out",
-                }}
-              >
-                <CardContent
+            <>
+              <Grid item key={index} xs={12} sm={6} md={4} lg={3}>
+                <Card
                   sx={{
-                    padding: 0.5,
-                    "&:last-child": {
-                      paddingBottom: 1,
+                    padding: 2,
+                    backgroundColor: "#FCB5BA",
+                    borderRadius: 4,
+                    boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
+                    "&:hover": {
+                      transform: "scale(1.05)",
+                      boxShadow: "0px 8px 20px rgba(0, 0, 0, 0.2)",
                     },
+                    minWidth: 500,
+                    height: 500,
+                    display: "flex",
+                    flexDirection: "collumn",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    transition: "transform 0.2s ease-in-out",
                   }}
                 >
-                  <Typography
-                    variant="h5"
+                  <CardContent
                     sx={{
-                      fontFamily: "Bubble",
-                      fontSize: "24px",
-                      color: "white",
+                      padding: 0.5,
+                      "&:last-child": {
+                        paddingBottom: 1,
+                      },
                     }}
                   >
-                    {user.name}
-                    {user._id}
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Grid>
+                    <Typography
+                      variant="h5"
+                      sx={{
+                        fontFamily: "Bubble",
+                        fontSize: "24px",
+                        color: "white",
+                      }}
+                    >
+                      {user.name}
+                      {user.playbackID}
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </Grid>
+              {/* <Video src={user.playbackID} /> */}
+            </>
           ))}
       </Grid>
       <Box
@@ -156,6 +160,7 @@ function ViewGroup() {
           onChange={onSubmitVideo}
         />
       </Box>
+      <Video src={"4809ca1v2mvs2f4m"} />
     </Box>
   )
 }

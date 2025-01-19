@@ -43,7 +43,6 @@ router.get("/user/:userId", async (req, res) => {
 router.post("/", async (req, res) => {
   try {
     const { userID } = req.body
-
     // Check if the user exists
     const userExists = await User.findById(userID)
     if (!userExists) {
@@ -62,6 +61,9 @@ router.post("/", async (req, res) => {
       existingAsset.uploadUrl = url
 
       await existingAsset.save()
+      await User.findByIdAndUpdate(userID, {
+        playbackID: playbackID,
+      })
 
       return res.status(200).json(existingAsset)
     }
@@ -72,6 +74,10 @@ router.post("/", async (req, res) => {
       ID,
       playbackID,
       uploadUrl: url,
+    })
+
+    await User.findByIdAndUpdate(userID, {
+      playbackID: playbackID,
     })
 
     res.status(201).json(newVideo)

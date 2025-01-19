@@ -3,7 +3,6 @@ const API_URL = "http://localhost:5000/api/"
 // Gets all the information from everyone in the group
 export async function getPeopleInGroup(groupID) {
   try {
-    console.log("hieu", groupID)
     const response = await fetch(`${API_URL}group/user/${groupID}`, {
       method: "GET",
       headers: {

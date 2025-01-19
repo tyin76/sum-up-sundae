@@ -44,7 +44,7 @@ router.get("/user/:groupID", async (req, res) => {
 
     // Fetch user details for all user IDs
     const users = await User.find({ _id: { $in: userIDs } }).select(
-      "name email avatar"
+      "name email avatar playbackID"
     ) // Only include these fields in the response
     res.status(200).json({ users })
   } catch (error) {

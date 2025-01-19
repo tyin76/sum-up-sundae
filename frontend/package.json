@@ -5,10 +5,12 @@
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
+    "@livepeer/react": "^4.2.9",
     "@mui/material": "^6.4.0",
     "axios": "^1.7.9",
     "cra-template": "1.2.0",
     "firebase": "^11.2.0",
+    "livepeer": "^3.5.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^6.28.2",
@@ -38,5 +40,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
   }
 }
