@@ -6,7 +6,7 @@ function Header({ children, height='10vh' }) {
     return (
         <Stack>
             <Stack direction={'row'} width="100%" padding={"10px"}>
-                <Box height="10px">
+                <Box height={height}>
                     <Logo height={height} />
                 </Box>
             </Stack>
