@@ -53,7 +53,6 @@ const AuthProvider = ({ children }) => {
       setUid(_id)
       setGroupId(groups)
 
-      console.log("user id: ", _id)
       console.log("Group id: ", groups)
       localStorage.setItem("uid", _id)
       localStorage.setItem("groups", groups)
