@@ -4,6 +4,7 @@ import { getPeopleInGroup } from '../api/api.js'
 import ProfileCard from '../components/ProfileCard.js';
 import { Typography, Box, Card, CardContent } from '@mui/material';
 import Grid from '@mui/material/Grid2';
+import CustomButton from '../components/CustomButton.js';
 
 
 function ViewGroup() {
@@ -85,6 +86,18 @@ function ViewGroup() {
                 </Grid>
               ))}
           </Grid>
+          <Box
+      sx={{
+        marginTop: '10vh', 
+        display: 'flex',
+        justifyContent: 'center', 
+        alignItems: 'center',
+        width: '100%',
+        padding: 2,
+      }}
+    >
+      <CustomButton>Upload Video</CustomButton>
+            </Box>
         </Box>
       );
     };
