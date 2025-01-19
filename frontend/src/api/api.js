@@ -31,9 +31,9 @@ export async function getPeopleInGroup() {
     return mockData
 }
 
-async function getGroupId(groupId) {
+async function getGroupId(userId) {
     try {
-        const response = await fetch(`http://localhost:4898/api/group/${groupId}`, {
+        const response = await fetch(`http://localhost:4898/api/group/${userId}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -63,15 +63,27 @@ async function getAllUsersAssetsInGroup(groupId) {
     }  
 }
 
-// Gets the current group code the user is currently in
-function getCurrentGroupCode() {
-
+// Gets the assets of a user
+async function getAssetsOfUser(userId) {
+    try {
+        const response = await fetch(`http://localhost:4898/api/asset/user/${userId}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        const data = await response.json();
+        console.log(data);
+        return data;
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 // 
 async function removeUserFromGroup(groupId, userId) {
     try {
-        const response = await fetch(`http://localhost:4898/api/${groupId}/user/${userId}`, {
+        const response = await fetch(`http://localhost:4898/api/group/${groupId}/user/${userId}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
