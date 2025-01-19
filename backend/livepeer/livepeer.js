@@ -1,6 +1,7 @@
 import { readFile } from "fs/promises"
 import fetch from "node-fetch"
 import { existsSync } from "fs"
+import { log } from "console"
 
 const filepath =
   "/Users/hieule/xuanhieu/nwhacks2025/sum-up-sundae/backend/assets/IMG_4544.MOV"
@@ -18,7 +19,7 @@ const options = {
     staticMp4: true,
   }),
 }
-export const lp = async () => {
+export const lp = async (asset) => {
   try {
     const response = await fetch(
       "https://livepeer.studio/api/asset/request-upload",
@@ -29,18 +30,20 @@ export const lp = async () => {
 
     if (!url) throw new Error("Upload URL not received")
 
-    console.log("File exists:", existsSync(filepath))
-    const file = await readFile(filepath)
+    // console.log("File exists:", existsSync(filepath))
+    // const file = await readFile(filepath)
 
     const uploadResponse = await fetch(url, {
       method: "PUT",
-      body: file,
+      body: asset,
       headers: {
         "Content-Type": "video/mp4", // Specify file type
       },
     })
-
-    console.log("Upload response:", uploadResponse)
+    const uploadUrl = uploadResponse.url
+    const playbackID = data.asset?.playbackId
+    const ID = data.asset?.id
+    return { ID, playbackID, uploadUrl }
   } catch (error) {
     console.error(error)
   }

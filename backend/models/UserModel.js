@@ -6,6 +6,17 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    email: {
+      type: String,
+      required: true,
+    },
+    avatar: {
+      type: String,
+    },
+    groups: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Group",
+    },
   },
   {
     timestamps: true, //created at and updated at
