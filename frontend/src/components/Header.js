@@ -1,13 +1,16 @@
-import {Box} from '@mui/material';
-import {Stack} from '@mui/material';
-import SumUpSundaeTextLogo from '../media/SumUpSundaeTextLogo.svg';
+import { Box } from '@mui/material';
+import { Stack } from '@mui/material';
+import Logo from './Logo'
 
-function Header() {
+function Header({ children, height='10vh' }) {
     return (
-        <Stack direction={'row'} width="100%">
-            <Box height="100%">
-                <img src={SumUpSundaeTextLogo} alt="SumUp Sundae Text Logo" />
-            </Box>
+        <Stack>
+            <Stack direction={'row'} width="100%" padding={"10px"}>
+                <Box height="10px">
+                    <Logo height={height} />
+                </Box>
+            </Stack>
+            {children}
         </Stack>
     );
 }
