@@ -3,6 +3,7 @@ import LoginButton from '../auth/LoginButton.js';
 import LogoutButton from '../auth/LogoutButton.js';
 import { auth } from '../auth/firebaseConfig';
 import { Box, Typography } from '@mui/material';
+import LogoAndText from '../media/SumUpSundaeTextLogo.svg'
 
 function HomePage() {
   const [user, setUser] = useState(null);
@@ -49,7 +50,10 @@ function HomePage() {
         alignItems="center"
         justifyContent="center"
       >
-        <Typography>Sum-up Sundae</Typography>
+        <Box>
+        <img src={LogoAndText} alt="Logo and Text" style={{ width: "100%", height: "auto" }}></img>
+        </Box>
+        
         {!user && <LoginButton setUser={setUser} />}
         {user && <LogoutButton setUser={setUser} />}
       </Box>
