@@ -181,8 +181,20 @@ export async function createUser(name, email, avatar) {
   }
 }
 
-function didPostToday() {
-  const mockData = true
-
-  return mockData
+export async function HasPostThisWeek(userID) {
+  try {
+    const response = await fetch(`${API_URL}asset/has-uploaded/${userID}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+    const data = await response.json()
+    if (data.hasUploaded) {
+      return true
+    }
+    return false
+  } catch (error) {
+    console.log(error)
+  }
 }

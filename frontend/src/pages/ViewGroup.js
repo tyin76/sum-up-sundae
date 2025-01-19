@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import Header from "../components/Header"
-import { getPeopleInGroup } from "../api/api.js"
+import { getPeopleInGroup, HasPostThisWeek } from "../api/api.js"
 import ProfileCard from "../components/ProfileCard.js"
 import { Typography, Box, Card, CardContent } from "@mui/material"
 import Grid from "@mui/material/Grid2"
@@ -11,6 +11,7 @@ import { AuthContext } from "../providers/AuthProvider.js"
 import { useNavigate } from "react-router-dom"
 function ViewGroup() {
   const [groupUsers, setGroupUsers] = useState(null)
+  const [hasUploaded, setHasUploaded] = useState(false)
 
   const uid = localStorage.getItem("uid")
   const groupId = localStorage.getItem("groups")
@@ -23,6 +24,19 @@ function ViewGroup() {
       fileInputRef.current.click()
     }
   }
+
+  const checkUpload = async (uid) => {
+    const bool = await HasPostThisWeek(uid)
+    console.log("Has Post:", bool)
+    if (bool) {
+      return setHasUploaded(true)
+    }
+    return setHasUploaded(false)
+  }
+
+  useEffect(() => {
+    checkUpload(uid)
+  }, [])
 
   const onSubmitVideo = async (e) => {
     e.preventDefault()
@@ -52,6 +66,7 @@ function ViewGroup() {
           },
         })
         const json = await response
+        checkUpload(uid)
         console.log(json)
       } catch (error) {
         console.error(error)
@@ -62,7 +77,9 @@ function ViewGroup() {
   const navigate = useNavigate()
 
   const handleCardClick = (playbackID) => {
-    navigate(`/userSumUp/${playbackID}`)
+    if (hasUploaded) {
+      navigate(`/userSumUp/${playbackID}`)
+    }
   }
 
   useEffect(() => {
@@ -116,7 +133,9 @@ function ViewGroup() {
                 }}
               >
                 <img
-                  className="rounded-md h-[400px]"
+                  className={`rounded-md h-[400px] object-contain ${
+                    hasUploaded ? "" : "blur-xl"
+                  }`}
                   src={`https://vod-cdn.lp-playback.studio/raw/jxf4iblf6wlsyor6526t4tcmtmqa/catalyst-vod-com/hls/${user.playbackID}/thumbnails/keyframes_0.png`}
                 ></img>
                 <CardContent
