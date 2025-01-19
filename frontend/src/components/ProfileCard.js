@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button } from '@mui/material';
 
 const ProfileCard = ({ children }) => {
   const style = {
@@ -22,9 +23,9 @@ const ProfileCard = ({ children }) => {
 
 
   return (
-    <button style={style}>
+    <Button style={style}>
       {children}
-    </button>
+    </Button>
   );
 };
 

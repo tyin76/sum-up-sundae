@@ -12,7 +12,20 @@ export async function getPeopleInGroup() {
         {
             name: "Josh",
             email: 'wfiwiejfio'
+        },
+        {
+            name: "Hieu",
+            email: "asidoashid"
+        },
+        {
+            name: "Terence",
+            email: "ahudhasoidioasd"
+        }, 
+        {
+            name: "Jake",
+            email: "ahsdiohasodhioas"
         }
+
     ]
 
     return mockData
