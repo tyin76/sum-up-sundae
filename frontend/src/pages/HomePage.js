@@ -5,9 +5,13 @@ import { auth } from '../auth/firebaseConfig';
 import { Box, Typography } from '@mui/material';
 import LogoAndText from '../media/SumUpSundaeTextLogo.svg'
 import Logo from '../components/Logo.js';
+import { useNavigate } from 'react-router-dom';
+import { Button } from '@mui/material';
 
 function HomePage() {
   const [user, setUser] = useState(null);
+  const navigate = useNavigate();
+  const [inGroup, setInGroup] = useState(false);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (currentUser) => {
@@ -27,6 +31,21 @@ function HomePage() {
     return () => unsubscribe();
   }, []);
 
+  useEffect(() => {
+    if (user === null) {
+      navigate('/');
+      return;
+    }
+    // go to /viewGroup
+    if (user && inGroup) {
+      navigate('/viewGroup')
+      return
+    } // go to /createJoin 
+      else if (user && !inGroup){
+        navigate('/createJoin')
+      }
+  }, [user])
+
   return (
     <Box
       display="flex"
@@ -41,9 +60,10 @@ function HomePage() {
         justifyContent="center"
       >
         <Typography sx={{ fontFamily: 'Bubble', color: 'white', fontSize: '40px' }}>Keep in touch with your friends!</Typography>
+        <Button onClick={() => setInGroup(!inGroup)}></Button>
       </Box>
 
-      
+
       <Box
         flex={1}
         bgcolor="#FFF5F4"
