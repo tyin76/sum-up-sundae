@@ -31,6 +31,25 @@ export async function getPeopleInGroup() {
     return mockData
 }
 
+export async function uploadVideo(userID, videoFile) {
+    try {
+        const response = await fetch(`http://localhost:4898/api/asset`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: {
+                userID: userID,
+                asset: videoFile
+            }
+        });
+        const data = await response.json();
+        console.log(data)
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 async function getGroupId(userId) {
     try {
         const response = await fetch(`http://localhost:4898/api/group/${userId}`, {

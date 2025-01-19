@@ -6,9 +6,18 @@ import { Typography, Box, Card, CardContent } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import CustomButton from '../components/CustomButton.js';
 import { useRef } from 'react'
+import { uploadVideo } from '../api/api'
 
 
 function ViewGroup() {
+
+    const onUpload = async (e) => {
+      console.log('File selected:', e.target.files[0]);
+      const videoFile = e.target.files[0];
+      const uid = await localStorage.getItem("uid");
+      uploadVideo(uid, videoFile);
+    }
+
     const [groupUsers, setGroupUsers] = useState(null);
 
     const fileInputRef = useRef(null);
@@ -110,7 +119,7 @@ function ViewGroup() {
         ref={fileInputRef}
         type="file"
         style={{ display: 'none' }} // Hidden from view but still functional
-        onChange={(e) => console.log('File selected:', e.target.files)}
+        onChange={onUpload}
       />
             </Box>
         </Box>
