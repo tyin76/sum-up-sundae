@@ -37,7 +37,7 @@ function HomePage() {
     <>
       <Box display="flex" height="100vh" position="relative">
         
-        <Box
+        {user && <Box
           position="absolute"
           top={20} 
           right={20} 
@@ -51,6 +51,7 @@ function HomePage() {
           <CustomButton fontSize="18px">View Group</CustomButton>
           </Link>
         </Box>
+        }
 
         <Box
           flex={1}
