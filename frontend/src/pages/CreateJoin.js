@@ -2,7 +2,8 @@ import CustomButton from "../components/CustomButton";
 import { useEffect, useState } from "react"
 import { Stack, Box } from "@mui/material"
 import { TextField } from "@mui/material"
-import { joinGroup } from '../api/api'
+import { joinGroup, createGroup } from '../api/api'
+import { create } from "@mui/material/styles/createTransitions";
 
 function CreateJoin() {
     const [groupCode, setGroupCode] = useState('');
@@ -16,6 +17,10 @@ function CreateJoin() {
     
     async function handleClick(groupCode) {
         await joinGroup(groupCode);
+    }
+
+    async function handleCreateGroupClick() {
+        await createGroup();
     }
 
     return (
@@ -59,7 +64,7 @@ function CreateJoin() {
                     onClick={() => handleClick(groupCode)}>Join Group</CustomButton>
             </Stack>
             <Box sx={{height: "30px"}}/>
-            <CustomButton>Create Group</CustomButton>
+            <CustomButton onClick={() => handleCreateGroupClick()}>Create Group</CustomButton>
         </Stack>
     );
 }

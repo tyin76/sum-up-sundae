@@ -107,7 +107,25 @@ export async function joinGroup(groupCode) {
 
 }
 
-function createGroup() {
+export async function createGroup() {
+
+    const uid = localStorage.getItem('uid');
+    console.log(uid);
+    try {
+        const response = await fetch('http://localhost:4898/api/group', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                userID: uid
+            })
+        });
+        const data = await response.json();
+        console.log(data);
+    } catch (error) {
+        console.log(error);
+    }
 
 }
 
