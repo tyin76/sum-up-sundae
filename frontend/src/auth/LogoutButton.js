@@ -14,7 +14,12 @@ const LogoutButton = ({ setUser }) => {
   };
 
   return (
-    <GoogleSignInButton>Logout</GoogleSignInButton>
+    <GoogleSignInButton
+        variant="outlined"
+        onClick={handleLogout}
+      >
+        Logout
+  </GoogleSignInButton>
   );
 };
 
